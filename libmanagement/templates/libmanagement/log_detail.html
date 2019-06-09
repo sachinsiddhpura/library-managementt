@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'library:library_log_list' %}">Log Listing</a></p>
+<table class="table">
+<tr><td>issued_at</td><td>{{ object.issued_at }}</td></tr>
+<tr><td>return_time</td><td>{{ object.return_time }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit Log</a>
+
+{% endblock %}

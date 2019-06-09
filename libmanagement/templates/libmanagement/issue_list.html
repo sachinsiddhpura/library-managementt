@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'library:library_issue_list' %}">Issue Listing</a></p>
+<table class="table">
+<tr>
+<td>ID</td><td>Link</td>
+    <td>shelf_id</td>
+    <td>available_status</td>
+</tr>
+{% for object in object_list %}
+<tr>
+    <td>{{object.pk}}</td>
+    <td><a href="{{object.get_absolute_url}}">{{object}}</a></td>
+    <td>{{ object.shelf_id }}</td>
+    <td>{{ object.available_status }}</td>
+</tr>
+{% endfor %}
+</table><a class="btn btn-primary" href="{% url 'library:library_issue_create' %}">Create new Issue</a>
+{% endblock %}

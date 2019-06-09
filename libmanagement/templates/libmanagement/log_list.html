@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'library:library_log_list' %}">Log Listing</a></p>
+<table class="table">
+<tr>
+<td>ID</td><td>Link</td>
+    <td>issued_at</td>
+    <td>return_time</td>
+</tr>
+{% for object in object_list %}
+<tr>
+    <td>{{object.pk}}</td>
+    <td><a href="{{object.get_absolute_url}}">{{object}}</a></td>
+    <td>{{ object.issued_at }}</td>
+    <td>{{ object.return_time }}</td>
+</tr>
+{% endfor %}
+</table><a class="btn btn-primary" href="{% url 'library:library_log_create' %}">Create new Log</a>
+{% endblock %}

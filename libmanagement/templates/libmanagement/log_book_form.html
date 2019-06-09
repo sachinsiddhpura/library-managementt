@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="/library/log_book/" method="post">
+    {% csrf_token %}
+    Enrolment Number: <input type="text" name="enrolment_number" id="enrolment_number"><br>
+    Book Issue: <br>
+    <select name="book_issue_pk" id="book_issue">
+    {% for issue in issues %}
+        <option value="{{issue.pk}}">{{issue.shelf_id}} - {{issue.book.title}}</option>
+    {% endfor %}
+    </select>
+    Issue For: <input type="number" name="issue_days" id="issue_days">
+    <input type="submit" value="submit">
+</form>
+{% endblock content %}

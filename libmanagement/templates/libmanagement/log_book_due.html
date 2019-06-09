@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if due_books %}
+    {% for due_book in due_books %}
+        <p>{{due_book.book_issue}} - {{due_book.return_time}}</p>
+    {% endfor %}
+{% endif %}
+{% endblock content %}

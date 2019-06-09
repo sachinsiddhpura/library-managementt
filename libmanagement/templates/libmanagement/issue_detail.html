@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'library:library_issue_list' %}">Issue Listing</a></p>
+<table class="table">
+<tr><td>shelf_id</td><td>{{ object.shelf_id }}</td></tr>
+<tr><td>available_status</td><td>{{ object.available_status }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit Issue</a>
+
+{% endblock %}

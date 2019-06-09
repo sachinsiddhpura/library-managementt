@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if issued_books %}
+        <form action="{% url 'library:return_book_handler' %}" method="post">
+        {% csrf_token %}
+        <select name="issued_book_pk" id="issued_book">
+            {% for issued_book in issued_books %}
+                <option value="{{issued_book.pk}}">{{issued_book.book_issue.shelf_id}} {{issued_book.book_issue.book}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="submit"><br>
+        {% if due_books %}
+            <h3>Due Books</h3>
+            {% for due_book in due_books %}
+                <p>{{due_book.book_issue.shelf_id}} {{due_book.book_issue.book}} - fine: {{due_book.fine}}</p>
+            {% endfor %}
+        {% endif %}
+        
+        
+    {% else %}
+        <form action="." method="post">
+        {% csrf_token %}
+        Enrolment Number: <input type="text" name="enrolment_number" id="enrolment_number">
+        <input type="submit" value="submit">
+{% endif %}
+</form>
+{% endblock content %}

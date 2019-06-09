@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'library:library_book_list' %}">Book Listing</a></p>
+<table class="table">
+<tr>
+<td>ID</td><td>Link</td>
+    <td>title</td>
+    <td>author</td>
+    <td>category</td>
+    <td>isbn</td>
+</tr>
+{% for object in object_list %}
+<tr>
+    <td>{{object.pk}}</td>
+    <td><a href="{{object.get_absolute_url}}">{{object}}</a></td>
+    <td>{{ object.title }}</td>
+    <td>{{ object.author }}</td>
+    <td>{{ object.category }}</td>
+    <td>{{ object.isbn }}</td>
+</tr>
+{% endfor %}
+</table><a class="btn btn-primary" href="{% url 'library:library_book_create' %}">Create new Book</a>
+{% endblock %}
